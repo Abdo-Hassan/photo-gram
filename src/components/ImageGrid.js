@@ -8,9 +8,12 @@ const ImageGrid = ({ getImages, images }) => {
     return () => unSub();
   }, [getImages]);
 
-  console.log('images', images);
-
-  return <div className='img-grid'>images</div>;
+  return (
+    <div className='img-grid'>
+      {/* <img src={images ? images[3].url : null} alt='pic' /> */}
+      images
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
