@@ -22,21 +22,21 @@ const UploadForm = ({ addImage, image }) => {
 
   return (
     <form>
-      <label htmlFor=''>
-        <input type='file' onChange={changeHandler} />
+      <label htmlFor='imageUpload'>
+        <input type='file' onChange={changeHandler} id='imageUpload' />
         <span>+</span>
       </label>
       <div className='output'>
         {error && <div className='error'>{error}</div>}
         {image && <div>{image.name}</div>}
-        {image && <ProgressBar />}
+        {image && <ProgressBar addImage={addImage} image={image} />}
       </div>
     </form>
   );
 };
 
 const mapStateToProps = (state) => ({
-  image: state.userImages.image,
+  image: state.userImage.image,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,7 +10,7 @@ const useStorage = (image) => {
     // refrences
     const storageRef = storage.ref(image.name);
     storageRef.put(image).on(
-      'state_change',
+      'state_changed',
       (snapshot) => {
         let percentage =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;

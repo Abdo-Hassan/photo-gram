@@ -4,5 +4,5 @@ import { imageReducer } from './reducers/image/imageReducer';
 
 export const rootReducer = combineReducers({
   userAuth: authReducer,
-  userImages: imageReducer,
+  userImage: imageReducer,
 });
