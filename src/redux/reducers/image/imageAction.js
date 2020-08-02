@@ -39,3 +39,6 @@ export const getSelectedImage = (image) => ({
   type: types.GET_SELECTED_IMAGE,
   payload: image,
 });
+export const hideSelectedImage = () => ({
+  type: types.HIDE_SELECTED_IMAGE,
+});

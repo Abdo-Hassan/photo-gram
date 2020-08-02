@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { hideSelectedImage } from '../redux/reducers/image/imageAction';
 
-const Modal = ({ selectedImage }) => {
+const Modal = ({ selectedImage, hideSelectedImage }) => {
   return (
     <Fragment>
       {selectedImage && (
-        <div className='backdrop'>
+        <div className='backdrop' onClick={() => hideSelectedImage()}>
           <img src={selectedImage.url} alt='enlarged pic' />
         </div>
       )}
@@ -17,4 +18,8 @@ const mapStateToProps = (state) => ({
   selectedImage: state.userImage.selectedImage,
 });
 
-export default connect(mapStateToProps)(Modal);
+const mapDispatchToProps = (dispatch) => ({
+  hideSelectedImage: () => dispatch(hideSelectedImage()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

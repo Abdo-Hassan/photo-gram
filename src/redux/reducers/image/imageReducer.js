@@ -32,6 +32,13 @@ export const imageReducer = (state = INIT_STATE, action) => {
         ...state,
         selectedImage: action.payload,
       };
+
+    case types.HIDE_SELECTED_IMAGE:
+      return {
+        ...state,
+        selectedImage: null,
+      };
+
     default:
       return state;
   }
