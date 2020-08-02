@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { hideSelectedImage } from '../redux/reducers/image/imageAction';
+import { motion } from 'framer-motion';
 
 const Modal = ({ selectedImage, hideSelectedImage }) => {
   const handelClick = (e) => {
@@ -12,9 +13,19 @@ const Modal = ({ selectedImage, hideSelectedImage }) => {
   return (
     <Fragment>
       {selectedImage && (
-        <div className='backdrop' onClick={handelClick}>
-          <img src={selectedImage.url} alt='enlarged pic' />
-        </div>
+        <motion.div
+          className='backdrop'
+          onClick={handelClick}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.img
+            src={selectedImage.url}
+            alt='enlarged pic'
+            initial={{ y: '-100vh' }}
+            animate={{ y: 0 }}
+          />
+        </motion.div>
       )}
     </Fragment>
   );

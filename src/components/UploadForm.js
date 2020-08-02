@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import ProgressBar from './ProgressBar';
+import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { addImage } from '../redux/reducers/image/imageAction';
 import { timestamp, firestore, storage } from '../firebase';
+import { motion } from 'framer-motion';
 
 const UploadForm = ({ addImage, image }) => {
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [url, setUrl] = useState(null);
   const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
   const changeHandler = (e) => {
@@ -32,8 +31,9 @@ const UploadForm = ({ addImage, image }) => {
           const url = await storageRef.getDownloadURL();
           const createdAt = timestamp();
           collectionRef.add({ url, createdAt });
-          setUrl(url);
           setError(null);
+          setProgress(null);
+          addImage(null);
         }
       );
     } else {
@@ -50,14 +50,15 @@ const UploadForm = ({ addImage, image }) => {
       </label>
       <div className='output'>
         {error && <div className='error'>{error}</div>}
-        {image && <div>{image.name}</div>}
         {image && (
-          <ProgressBar
-            addImage={addImage}
-            image={image}
-            url={url}
-            progress={progress}
-          />
+          <Fragment>
+            <div>{image.name}</div>
+            <motion.div
+              className='progress-bar'
+              initial={{ width: 0 }}
+              animate={{ width: progress + '%' }}
+            ></motion.div>
+          </Fragment>
         )}
       </div>
     </form>

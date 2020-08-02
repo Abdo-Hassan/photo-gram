@@ -15,7 +15,7 @@ body {
 }
 .title h1 {
   color: var(--primary);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 2px;
   font-weight: normal;
 }
@@ -86,9 +86,7 @@ label:hover {
   opacity: 0.8;
   border-radius: 10px;
 }
-.img-wrap:hover {
-  opacity: 1;
-}
+
 .img-wrap img {
   min-width: 100%;
   min-height: 100%;
