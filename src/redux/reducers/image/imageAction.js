@@ -34,3 +34,8 @@ export const getImages = () => {
     }
   };
 };
+
+export const getSelectedImage = (image) => ({
+  type: types.GET_SELECTED_IMAGE,
+  payload: image,
+});

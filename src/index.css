@@ -1,5 +1,5 @@
 :root {
-  --primary: #efb6b2;
+  --primary: #6f4a8e;
   --secondary: #4e4e4e;
   --error: #ff4a4a;
 }
@@ -40,15 +40,15 @@ label input {
 }
 label {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border: 1px solid var(--primary);
   border-radius: 50%;
   margin: 10px auto;
-  line-height: 30px;
+  line-height: 50px;
   color: var(--primary);
   font-weight: bold;
-  font-size: 24px;
+  font-size: 29px;
   cursor: pointer;
 }
 label:hover {
@@ -78,12 +78,16 @@ label:hover {
   grid-gap: 40px;
 }
 .img-wrap {
+  cursor: pointer;
   overflow: hidden;
   height: 0;
   padding: 50% 0;
-  /* padding controls height, will always be perfectly square regardless of width */
   position: relative;
   opacity: 0.8;
+  border-radius: 10px;
+}
+.img-wrap:hover {
+  opacity: 1;
 }
 .img-wrap img {
   min-width: 100%;
