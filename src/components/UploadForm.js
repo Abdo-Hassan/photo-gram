@@ -18,8 +18,6 @@ const UploadForm = ({ addImage, image }) => {
     }
   };
 
-  console.log(image);
-
   return (
     <form>
       <label htmlFor='imageUpload'>
@@ -28,7 +26,6 @@ const UploadForm = ({ addImage, image }) => {
       </label>
       <div className='output'>
         {error && <div className='error'>{error}</div>}
-        {image && <div>{image.name}</div>}
         {image && <ProgressBar addImage={addImage} image={image} />}
       </div>
     </form>

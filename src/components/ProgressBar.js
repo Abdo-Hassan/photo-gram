@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStorage from '../hooks/useStorage';
 import { connect } from 'react-redux';
 import { addImage } from '../redux/reducers/image/imageAction';
@@ -7,7 +7,13 @@ const ProgressBar = ({ addImage, image }) => {
   const { url, progress } = useStorage(image);
   console.log(progress, url);
 
-  return <div>{progress}</div>;
+  useEffect(() => {
+    if (url) {
+      addImage(null);
+    }
+  }, [url, addImage]);
+
+  return <div className='progress-bar' style={{ width: progress + '%' }}></div>;
 };
 
 const mapStateToProps = (state) => ({
