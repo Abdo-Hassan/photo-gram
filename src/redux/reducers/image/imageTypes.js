@@ -1,3 +1,5 @@
 export const types = {
   ADD_IMAGE: 'ADD_IMAGE',
+  GET_IMAGES: 'GET_IMAGES',
+  GET_IMAGES_ERROR: 'GET_IMAGES_ERROR',
 };
