@@ -33,6 +33,7 @@ const UploadForm = ({ addImage, image }) => {
           const createdAt = timestamp();
           collectionRef.add({ url, createdAt });
           setUrl(url);
+          setError(null);
         }
       );
     } else {

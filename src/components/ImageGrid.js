@@ -15,8 +15,12 @@ const ImageGrid = ({ getImages, images, getSelectedImage }) => {
     <div className='img-grid'>
       {images &&
         images.map((image) => (
-          <div className='img-wrap' onClick={() => getSelectedImage(image)}>
-            <img key={image.id} src={image.url} alt='uploaded pic' />
+          <div
+            className='img-wrap'
+            key={image.id}
+            onClick={() => getSelectedImage(image)}
+          >
+            <img src={image.url} alt='uploaded pic' />
           </div>
         ))}
     </div>
