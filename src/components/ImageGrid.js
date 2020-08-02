@@ -5,12 +5,18 @@ import {
   getSelectedImage,
 } from '../redux/reducers/image/imageAction';
 import { motion } from 'framer-motion';
+import Loading from '../assets/images/loading.gif';
 
 const ImageGrid = ({ getImages, images, getSelectedImage }) => {
   useEffect(() => {
     const unSub = getImages();
+
     return () => unSub();
   }, [getImages]);
+
+  if (!images) {
+    return <img className='loading-img' src={Loading} alt='loading' />;
+  }
 
   return (
     <div className='img-grid'>
