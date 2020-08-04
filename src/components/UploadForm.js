@@ -1,10 +1,11 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { addImage } from '../redux/reducers/image/imageAction';
+import { googleSignIn } from '../redux/reducers/auth/authAction';
 import { timestamp, firestore, storage } from '../firebase';
 import { motion } from 'framer-motion';
 
-const UploadForm = ({ addImage, image }) => {
+const UploadForm = ({ addImage, image, googleSignIn, currentUser }) => {
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState(0);
   const types = ['image/png', 'image/jpeg', 'image/jpg'];
@@ -42,35 +43,42 @@ const UploadForm = ({ addImage, image }) => {
     }
   };
 
+  console.log('currentUser', currentUser);
+
   return (
-    <form>
-      <label htmlFor='imageUpload'>
-        <input type='file' onChange={changeHandler} id='imageUpload' />
-        <span>+</span>
-      </label>
-      <div className='output'>
-        {error && <div className='error'>{error}</div>}
-        {image && (
-          <Fragment>
-            <div>{image.name}</div>
-            <motion.div
-              className='progress-bar'
-              initial={{ width: 0 }}
-              animate={{ width: progress + '%' }}
-            ></motion.div>
-          </Fragment>
-        )}
-      </div>
-    </form>
+    <Fragment>
+      <form>
+        <label htmlFor='imageUpload'>
+          <input type='file' onChange={changeHandler} id='imageUpload' />
+          <span>+</span>
+        </label>
+        <div className='output'>
+          {error && <div className='error'>{error}</div>}
+          {image && (
+            <Fragment>
+              <div>{image.name}</div>
+              <motion.div
+                className='progress-bar'
+                initial={{ width: 0 }}
+                animate={{ width: progress + '%' }}
+              ></motion.div>
+            </Fragment>
+          )}
+        </div>
+      </form>
+      <button onClick={() => googleSignIn()}>googleSignIn</button>
+    </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
+  currentUser: state.userAuth.currentUser,
   image: state.userImage.image,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addImage: (image) => dispatch(addImage(image)),
+  googleSignIn: () => dispatch(googleSignIn()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UploadForm);

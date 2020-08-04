@@ -1,4 +1,4 @@
-import { types } from './imageTypes';
+import types from './imageTypes';
 
 const INIT_STATE = {
   image: null,

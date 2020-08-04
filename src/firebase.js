@@ -19,3 +19,32 @@ export const auth = firebase.auth();
 export const storage = firebase.storage();
 export const firestore = firebase.firestore();
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+// google sign in
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+// create user database record
+export const createUserRecord = async (userAuth, displayName) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapshot = await userRef.get();
+
+  if (!snapshot.exists) {
+    const { email } = userAuth;
+    const createdAt = timestamp();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+      });
+    } catch (error) {
+      console.log('error creating the user', error.message);
+    }
+  }
+
+  return userRef;
+};

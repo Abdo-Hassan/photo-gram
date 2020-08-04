@@ -1,4 +1,4 @@
-import { types } from './imageTypes';
+import types from './imageTypes';
 import { firestore } from '../../../firebase';
 
 export const addImage = (file) => ({
